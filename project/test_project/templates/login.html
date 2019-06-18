@@ -1,0 +1,40 @@
+<!-- hello_world.html -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>首頁</title>
+</head>
+<body>
+    <div class="header">
+        <h1>
+            <a href="/">會員登入</a>
+        </h1>
+    </div> 
+    <form action="/login/" method="post" >
+        <label>
+            <span>帳號 :</span>
+            <input id="username" type="text" name="username_db" class="error" placeholder="請輸入你的帳號"/>
+        </label>
+
+        <label>
+            <span>密碼 :</span>
+            <input id="userpassword" type="password"  name="userpassword_db"  placeholder="請輸入你的密碼"/>
+        </label>
+
+        <label>
+            <span>&nbsp;</span>
+            <input type="submit" class="button" value="確認"/>
+        </label>
+        <input type='hidden' name='ok' value='yes' />
+        {% if message_login %}
+            <td>{{ message_login}}</td>
+        {% else %}
+            <td colspan="4">尚未登入</td>
+        {% endif %}
+    </form>
+
+    
+</body>
+</html>

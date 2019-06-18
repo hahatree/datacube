@@ -1,0 +1,90 @@
+<!-- hello_world.html -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>過往交易明細</title>
+</head>
+<body>
+    <div>
+        <h1>
+            <a href="/">過往交易明細</a>
+        </h1>
+    </div>
+    <div>
+        <a>{{ User_detail.login }} 您好</a>
+    </div>
+
+    </div>
+    <div>
+            <a class="button" href="/page_changeuser">個人資料</a>    
+            <a class="button" href="/page_historytrade">過往交易明細</a> 
+            <a class="button" href="/page_todaytrade">即時交易明細</a> 
+            <a class="button" href="/logout">登出</a> 
+    </div>
+    {% if User_detail %}
+        <div>
+            <a>{{ User_detail.login }} 的過往交易明細</a>
+        </div>  
+        <form action="/historytrade/" method="post" >
+            <label>
+                <span></span>
+                <input id="stardate" type="date" name="stardate_db" />
+            </label>
+
+            <label>
+                <span></span>
+                <input id="enddate" type="date" name="enddate_db" />
+            </label>
+
+            <label>
+                <span>&nbsp;</span>
+                <input type="submit" class="button" value="確認"/>
+            </label>
+            <input type='hidden' name='ok' value='yes' />
+        </form>
+        {% if historytrade_detail %}
+            <div>
+                <a>過往交易明細如下</a>
+            </div> 
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>時間</th>
+                        <th>symbol</th>
+                        <th>priceorder</th>
+                        <th>pricecurrent</th>
+                        <th>volumeinitialext</th>
+                        <th>positionid</th>
+                        <th>ratemargin</th>
+                        <th>volumeinitial</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for trade in historytrade_detail  %}
+                        <tr>
+                            <td>{{ trade.timesetup }}</td>
+                            <td>{{ trade.symbol }}</td>
+                            <td>{{ trade.priceorder }}</td>
+                            <td>{{ trade.pricecurrent }}</td>
+                            <td>{{ trade.volumeinitialext }}</td>
+                            <td>{{ trade.positionid }}</td>
+                            <td>{{ trade.ratemargin }}</td>
+                            <td>{{ trade.volumeinitial }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>            
+        {% else %}
+            <a>並無此時間之交易明細</a>
+        {% endif %}
+    {% else %}
+        <a class="button" href="/">請重新登入</a>
+    {% endif %}
+    
+    
+    
+    
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!-- hello_world.html -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>註冊會員</title>
+    <link href="//fonts.googleapis.com/css?family=Lemon" rel="stylesheet" type="text/css">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="//djangogirlstaipei.github.io/assets/css/style.css" rel="stylesheet" type="text/css">
+    
+    <link href="/static/css/style.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+    <div class="header">
+        <h1 class="site-title text-center">
+            <a href="/">會員登入</a>
+        </h1>
+    </div> 
+    <form action="/usermanagepage/" method="post" class="smart-green">
+        <label>
+            <span>帳號 :</span>
+            <input id="username" type="text" name="username" class="error" placeholder="請輸入你的帳號"/>
+            <div class="error-msg"></div>
+        </label>
+
+        <label>
+            <span>密碼 :</span>
+            <input id="userpassword" type="password"  name="userpassword"  placeholder="請輸入你的密碼"/>
+            <div class="error-msg"></div>
+        </label>
+
+        
+            
+        <div class="success-msg"></div>
+        <label>
+            <span>&nbsp;</span>
+            <input type="submit" class="button" value="確認"/>
+        </label>
+        <input type='hidden' name='ok' value='yes' />
+        {% if message %}
+            <td>{{ message}}</td>
+        {% else %}
+            <td colspan="4">尚未登入</td>
+        {% endif %}
+    </form>
+
+    
+</body>
+</html>
